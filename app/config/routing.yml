@@ -1,0 +1,19 @@
+admin:
+    resource: "@AdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
+core:
+    resource: "@CoreBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+    
+tleroch_admin:
+    resource: "@TlerochAdminBundle/Resources/config/routing.yml"
+    prefix: /admin   
+    
+tleroch_news:
+    resource: "@NewsBundle/Resources/config/routing.yml"
+    prefix: /admin    

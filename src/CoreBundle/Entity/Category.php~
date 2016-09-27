@@ -1,0 +1,233 @@
+<?php
+
+namespace CoreBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Category
+ *
+ * @ORM\Table(name="category")
+ * @ORM\Entity(repositoryClass="CoreBundle\Repository\CategoryRepository")
+ */
+class Category {
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var \Category
+     *
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="categoriesChildren")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="category", referencedColumnName="id", nullable=true)
+     * })
+     */
+    private $categoryParent;
+
+    /**
+     * @ORM\OneToMany(targetEntity="CoreBundle\Entity\Category", mappedBy="categoryParent", cascade={"remove", "persist"})
+     */
+    private $categoriesChildren;
+
+    /**
+     * @ORM\OneToMany(targetEntity="CoreBundle\Entity\Product", mappedBy="category", cascade={"remove", "persist"})
+     */
+    private $products;
+
+    /**
+     * @ORM\OneToOne(targetEntity="CoreBundle\Entity\Photo", cascade={"persist"})
+     */
+    private $photo;
+
+    /**
+     * @var boolean
+     * 
+     * @ORM\Column(name="display", type="boolean", options={"default":true})
+     */
+    private $display;
+
+    /**
+     * @var boolean
+     * 
+     * @ORM\Column(name="zoom", type="boolean", options={"default":true})
+     */
+    private $zoom;
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId() {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Category
+     */
+    public function setName($name) {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName() {
+        return $this->name;
+    }
+
+    /**
+     * Set categoryParent
+     *
+     * @param string $categoryParent
+     *
+     * @return Category
+     */
+    public function setCategoryParent($categoryParent) {
+        $this->categoryParent = $categoryParent;
+
+        return $this;
+    }
+
+    /**
+     * Get categoryParent
+     *
+     * @return string
+     */
+    public function getCategoryParent() {
+        return $this->categoryParent;
+    }
+
+    /**
+     * Set categoriesChildren
+     *
+     * @param string $categoriesChildren
+     *
+     * @return Category
+     */
+    public function setCategoriesChildren($categoriesChildren) {
+        $this->categoriesChildren = $categoriesChildren;
+
+        return $this;
+    }
+
+    /**
+     * Get categoriesChildren
+     *
+     * @return string
+     */
+    public function getCategoriesChildren() {
+        return $this->categoriesChildren;
+    }
+
+    /**
+     * Set products
+     *
+     * @param string $products
+     *
+     * @return Category
+     */
+    public function setProducts($products) {
+        $this->products = $products;
+
+        return $this;
+    }
+
+    /**
+     * Get products
+     *
+     * @return string
+     */
+    public function getProducts() {
+        return $this->products;
+    }
+
+    /**
+     * Set photo
+     *
+     * @param string $photo
+     *
+     * @return Category
+     */
+    public function setPhoto($photo) {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Get photo
+     *
+     * @return string
+     */
+    public function getPhoto() {
+        return $this->photo;
+    }
+
+    /**
+     * Set display
+     *
+     * @param string $display
+     *
+     * @return Category
+     */
+    public function setDisplay($display) {
+        $this->display = $display;
+
+        return $this;
+    }
+
+    /**
+     * Get display
+     *
+     * @return string
+     */
+    public function getDisplay() {
+        return $this->display;
+    }
+
+    /**
+     * Set zoom
+     *
+     * @param string $zoom
+     *
+     * @return Category
+     */
+    public function setZoom($zoom) {
+        $this->zoom = $zoom;
+
+        return $this;
+    }
+
+    /**
+     * Get zoom
+     *
+     * @return string
+     */
+    public function getZoom() {
+        return $this->zoom;
+    }
+
+}
