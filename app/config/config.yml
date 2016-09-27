@@ -86,6 +86,8 @@ assetic:
             node_paths: [C:\Users\Tim\AppData\Roaming\npm\node_modules]
     bundles:
         - AppBundle
+        - CoreBundle
+        - TlerochAdminBundle
         
 # Tleroch News
 news:
