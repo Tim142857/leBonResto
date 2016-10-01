@@ -1,0 +1,14 @@
+{% extends 'AdminBundle:Default:Layout.html.twig' %}
+
+{% block page_title %}Catégories - Supprimer{% endblock %}
+
+{% block content %}
+    <p class="text-right"><a href="{{ path('admin_categories') }}" class="btn btn-danger">Retour</a></p>
+
+    <div class="alert alert-warning">
+        <p>Êtes-vous sur de vouloir supprimer la catégorie "<strong>{{ category.name }}</strong>" ?</p>
+        {{ form_start(form) }}
+        {{ form_widget(form.submit, { attr: { class: 'btn btn-danger' }, 'label': 'Delete' }) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

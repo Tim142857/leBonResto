@@ -1,0 +1,47 @@
+{% extends 'CoreBundle::Layout.html.twig' %}
+{% block body %}
+    <div class="row" style="margin-top: 50vh; transform: translateY(-50%);">
+        <div class="col-sm-9">
+            <!-- Slider main container -->
+            <div class="swiper-container">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper" >
+
+                    <div class="swiper-slide"><img class="" style="border: 2px solid white;"  src="{{ image('bundles/core/images/fake1.png').resize(500,500) }}" alt="ds"/></div>
+                    <div class="swiper-slide"><img class="" style="border: 2px solid white;"  src="{{ image('bundles/core/images/fake2.png').resize(500,500) }}" alt="sd"/></div>
+                    <div class="swiper-slide"><img class="" style="border: 2px solid white;"  src="{{ image('bundles/core/images/fake3.png').resize(500,500) }}" alt="ds"/></div>
+                    <div class="swiper-slide"><img class="" style="border: 2px solid white;"  src="{{ image('bundles/core/images/fake4.png').resize(500,500) }}" alt="ds"/></div>
+
+                </div>
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            bla bla <br/>
+            <p>dzadzadza<br/>
+                dzadzdaz<br/>
+                dzfez</p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <script>
+        $(document).ready(function () {
+            var swiper = new Swiper('.swiper-container', {
+                pagination: '.swiper-pagination',
+                nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev',
+                paginationClickable: true,
+                spaceBetween: 30,
+                centeredSlides: true,
+                autoplay: 3000,
+                autoplayDisableOnInteraction: false,
+                effect: 'flip',
+                loop: true
+            });
+
+        });
+    </script>
+{% endblock %}

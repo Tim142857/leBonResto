@@ -91,6 +91,10 @@ assetic:
         
 # Tleroch News
 news:
-    news_class:
+    news_class: CoreBundle\Entity\News
     news_type:
-    upload_folder:       
+    upload_folder: depot/photos/news/
+    
+gregwar_image: ~    
+    
+  

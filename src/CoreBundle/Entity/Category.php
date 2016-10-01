@@ -50,6 +50,9 @@ class Category {
 
     /**
      * @ORM\OneToOne(targetEntity="CoreBundle\Entity\Photo", cascade={"persist"})
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="photo", referencedColumnName="id", nullable=true)
+     * })
      */
     private $photo;
 
@@ -233,8 +236,7 @@ class Category {
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->categoriesChildren = new \Doctrine\Common\Collections\ArrayCollection();
         $this->products = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -246,8 +248,7 @@ class Category {
      *
      * @return Category
      */
-    public function addCategoriesChild(\CoreBundle\Entity\Category $categoriesChild)
-    {
+    public function addCategoriesChild(\CoreBundle\Entity\Category $categoriesChild) {
         $this->categoriesChildren[] = $categoriesChild;
 
         return $this;
@@ -258,8 +259,7 @@ class Category {
      *
      * @param \CoreBundle\Entity\Category $categoriesChild
      */
-    public function removeCategoriesChild(\CoreBundle\Entity\Category $categoriesChild)
-    {
+    public function removeCategoriesChild(\CoreBundle\Entity\Category $categoriesChild) {
         $this->categoriesChildren->removeElement($categoriesChild);
     }
 
@@ -270,8 +270,7 @@ class Category {
      *
      * @return Category
      */
-    public function addProduct(\CoreBundle\Entity\Product $product)
-    {
+    public function addProduct(\CoreBundle\Entity\Product $product) {
         $this->products[] = $product;
 
         return $this;
@@ -282,8 +281,12 @@ class Category {
      *
      * @param \CoreBundle\Entity\Product $product
      */
-    public function removeProduct(\CoreBundle\Entity\Product $product)
-    {
+    public function removeProduct(\CoreBundle\Entity\Product $product) {
         $this->products->removeElement($product);
     }
+
+    public function __toString() {
+        return $this->getName();
+    }
+
 }

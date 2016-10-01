@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="photo")
  * @ORM\Entity(repositoryClass="CoreBundle\Repository\PhotoRepository")
  */
-class Photo
-{
+class Photo {
+
     /**
      * @var int
      *
@@ -56,14 +56,12 @@ class Photo
      */
     private $totalFileName;
 
-
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -74,8 +72,7 @@ class Photo
      *
      * @return Photo
      */
-    public function setFileName($fileName)
-    {
+    public function setFileName($fileName) {
         $this->fileName = $fileName;
 
         return $this;
@@ -86,8 +83,7 @@ class Photo
      *
      * @return string
      */
-    public function getFileName()
-    {
+    public function getFileName() {
         return $this->fileName;
     }
 
@@ -98,8 +94,7 @@ class Photo
      *
      * @return Photo
      */
-    public function setExtension($extension)
-    {
+    public function setExtension($extension) {
         $this->extension = $extension;
 
         return $this;
@@ -110,8 +105,7 @@ class Photo
      *
      * @return string
      */
-    public function getExtension()
-    {
+    public function getExtension() {
         return $this->extension;
     }
 
@@ -122,8 +116,7 @@ class Photo
      *
      * @return Photo
      */
-    public function setTitle($title)
-    {
+    public function setTitle($title) {
         $this->title = $title;
 
         return $this;
@@ -134,8 +127,7 @@ class Photo
      *
      * @return string
      */
-    public function getTitle()
-    {
+    public function getTitle() {
         return $this->title;
     }
 
@@ -146,8 +138,7 @@ class Photo
      *
      * @return Photo
      */
-    public function setDescription($description)
-    {
+    public function setDescription($description) {
         $this->description = $description;
 
         return $this;
@@ -158,8 +149,7 @@ class Photo
      *
      * @return string
      */
-    public function getDescription()
-    {
+    public function getDescription() {
         return $this->description;
     }
 
@@ -170,8 +160,7 @@ class Photo
      *
      * @return Photo
      */
-    public function setTotalFileName($totalFileName)
-    {
+    public function setTotalFileName($totalFileName) {
         $this->totalFileName = $totalFileName;
 
         return $this;
@@ -182,8 +171,12 @@ class Photo
      *
      * @return string
      */
-    public function getTotalFileName()
-    {
+    public function getTotalFileName() {
         return $this->totalFileName;
     }
+
+    public function __toString() {
+        return $this->getFileName();
+    }
+
 }

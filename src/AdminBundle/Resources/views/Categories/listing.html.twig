@@ -1,0 +1,66 @@
+{% extends 'AdminBundle:Default:Layout.html.twig' %}
+
+{% block page_title %}Catégories{% endblock %}
+
+{% block content %}
+    <p class="pull-right"><a href="{{ path('admin_categories_add') }}" class="btn btn-primary">Nouvelle actualité</a></p>
+
+    {% for flash_message in app.session.flashBag.get('news') %}
+        <p class="alert alert-success">{{ flash_message }}</p>
+    {% endfor %}
+    {% if categories %}
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Catégorie Parent</th>
+                    <th>Active</th>
+                    <th>Zoom</th>
+                    <th>Photo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in categories %}
+                    <tr class="{% if not item.display %} danger{% endif %} categories ">
+                        <td>{{ item.name }}</td>
+                        <td>{{ (item.categoryParent!=null? item.categoryParent.name : '<span class="glyphicon glyphicon-remove" aria-hidden="true">')|raw }}</td>
+                        <td>{{ (item.display ? 'Online' : 'Offline')|trans }}</td>
+                        <td>{{ (item.zoom ? '<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>' : '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>') }}</td>
+                        <td>{{ (item.photo!=null ? '<img class="img-responsive previews" src="'~asset('depot/photos/'~item.photo.totalfileName)~'">' : '<span class="glyphicon glyphicon-remove" aria-hidden="true">')|raw  }}</td>
+                        <td>
+                            <a href="{{ path('admin_categories_edit', { id: item.id }) }}" class="btn btn-success"><span class="fa fa-pencil"></span></a>
+                            <a href="{{ path('admin_categories_delete', { id: item.id }) }}" class="btn btn-danger"><span class="fa fa-trash"></span></a>
+                        </td>
+                    </tr>
+                    {% if item.categoriesChildren %}
+                        {% for childCategory in item.categoriesChildren %}
+                            <tr class="{% if not childCategory.display %}danger {% endif %}hidden subCategories">
+                                <td>{{ childCategory.name }}</td>
+                                <td class="hidden-xs">{{ (childCategory.display ? 'Activée' : 'Désactivée') }}</td>
+                                <td>
+                                    <a href="{{ url('admin_categories_edit', { id: childCategory.id }) }}" class="btn btn-success test"><span class="fa fa-pencil"></span></a>
+                                    <a href="{{ url('admin_categories_delete', { id: childCategory.id }) }}" class="btn btn-danger test"><span class="fa fa-trash"></span></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $('.categories').on('click', function () {
+                if ($(this).nextUntil('.categories', 'tr').hasClass("hidden")) {
+                    $(".subCategories").not(".hidden").addClass("hidden");
+                    $(this).nextUntil('.categories', 'tr').removeClass("hidden");
+                } else {
+                    $(this).nextUntil('.categories', 'tr').addClass("hidden");
+                }
+            });
+        });
+    </script>
+{% endblock %}

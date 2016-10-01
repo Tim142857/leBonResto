@@ -1,3 +1,18 @@
 admin_homepage:
-    path:     /
+    path:     /admin
     defaults: { _controller: AdminBundle:Default:index }
+admin_categories:
+    path:     /admin/categories
+    defaults: { _controller: AdminBundle:Category:listing }
+admin_categories_add:
+    path:     /admin/categories/add
+    defaults: { _controller: AdminBundle:Category:add }
+tleroch_photo_upload:
+    path:     /admin/photos/add
+    defaults: { _controller: AdminBundle:Photo:upload }
+admin_categories_delete:
+    path:     /admin/categories/delete/{id}
+    defaults: { _controller: AdminBundle:Category:delete }
+admin_categories_edit:
+    path:     /admin/categories/edit/{id}
+    defaults: { _controller: AdminBundle:Category:edit }    
